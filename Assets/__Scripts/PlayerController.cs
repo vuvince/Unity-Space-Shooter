@@ -30,18 +30,18 @@ public class PlayerController : MonoBehaviour {
 
 		 
 
-		if (Input.GetKey (KeyCode.D)) {
+		if (Input.GetKey (KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
 			move += Vector3.right;
 				transform.rotation = Quaternion.Euler(0, -30, -15);
 		}
-		if (Input.GetKey (KeyCode.A)) {
+		if (Input.GetKey (KeyCode.A)|| Input.GetKey(KeyCode.LeftArrow)) {
 			move += Vector3.left;
 				transform.rotation = Quaternion.Euler(0, 30, 15);
 		}
-		if (Input.GetKey (KeyCode.W)) {
+		if (Input.GetKey (KeyCode.W)|| Input.GetKey(KeyCode.UpArrow)) {
 			move += Vector3.up;
 		}
-		if (Input.GetKey (KeyCode.S)) {
+		if (Input.GetKey (KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
 			move += Vector3.down;
 		}
 

@@ -11,14 +11,8 @@ public class Enemy_1 : Enemy {
 	// Use this for initialization
 	void Start () {
 		num = Random.value;
-		Invoke ("RandomNum", 1f/directionChangePerScd);
 	}
 
-	public void RandomNum () {
-		num = Random.value;
-
-		Invoke ("RandomNum", 1f / directionChangePerScd);
-	}
 
 
 
