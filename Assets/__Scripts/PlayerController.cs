@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 
 	public float speed;
-	public Camera boundary;
+	private BoundsCheck bound;
 
 	// Use this for initialization
 	void Start () {
@@ -15,24 +15,28 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Quaternion angle;
 		gameObject.transform.rotation = Quaternion.identity;
 		Vector3 move = Vector3.zero;
 
-		Vector3 pos = Camera.main.WorldToViewportPoint (transform.position);
-		pos.x = Mathf.Clamp (pos.x, 0.05f, 0.95f);
-		pos.y = Mathf.Clamp (pos.y, 0.05f, 0.95f);
-		transform.position = Camera.main.ViewportToWorldPoint(pos);
+		/*
+		if (bound.BoundaryCheck() != "in") {
+			Vector3 pos = Camera.main.WorldToViewportPoint (transform.position);
+			pos.x = Mathf.Clamp (pos.x, 0.05f, 0.95f);
+			pos.y = Mathf.Clamp (pos.y, 0.05f, 0.95f);
+			transform.position = Camera.main.ViewportToWorldPoint (pos);
+		}
+		*/
+		Vector3 pos = gameObject.transform.position;
+
+		 
 
 		if (Input.GetKey (KeyCode.D)) {
 			move += Vector3.right;
-			angle = new Quaternion(0, 0, 10, -100);
-			gameObject.transform.rotation = angle;
+				transform.rotation = Quaternion.Euler(0, -30, -15);
 		}
 		if (Input.GetKey (KeyCode.A)) {
 			move += Vector3.left;
-			angle = new Quaternion(0, 0, 10, 100);
-			gameObject.transform.rotation = angle;
+				transform.rotation = Quaternion.Euler(0, 30, 15);
 		}
 		if (Input.GetKey (KeyCode.W)) {
 			move += Vector3.up;
@@ -40,6 +44,10 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKey (KeyCode.S)) {
 			move += Vector3.down;
 		}
+
+		if(Input.GetKey(KeyCode.Space)){
+				gameObject.transform.Rotate(0,45,0);
+			}
 
 		gameObject.transform.position = move * speed + gameObject.transform.position;
 
