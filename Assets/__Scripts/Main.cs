@@ -11,6 +11,8 @@ public class Main : MonoBehaviour {
 	public float spawnPerSecond = 0.5f;
 	public float defaultPadding;
 
+
+
 	public GameObject easter;
 
 	// Use this for initialization
@@ -91,6 +93,16 @@ public class Main : MonoBehaviour {
 		if (Input.GetKey(KeyCode.Alpha6) && Input.GetKeyDown (KeyCode.Alpha9)) {
 			Instantiate (easter, pos, Quaternion.identity);
 		}
+	}
+
+	public void DelayedRestart (float delay)
+	{
+		Invoke ("Restart", delay); 
+	}
+
+	public void Restart(){
+		//Reload the original scene
+		SceneManager.LoadScene("Main");
 	}
 
 

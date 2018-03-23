@@ -2,12 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class Hero : MonoBehaviour {
 
+	static public Hero S; //Singleton
 
 	public float speed;
 	private BoundsCheck bound;
 
+	public float shieldLevel = 1; //Set Dynamically
+
+	private GameObject lastTriggerGo = null;
+
+	public float gameRestartDelay = 2f;
+
+	void Awake () {
+		if (S == null) {
+			S = this;
+		} else {
+			Debug.LogError ("HeroAwake() - Attempted to Assign second Hero");
+		}
+	}
 	// Use this for initialization
 	void Start () {
 		
@@ -52,4 +66,30 @@ public class PlayerController : MonoBehaviour {
 		gameObject.transform.position = move * speed + gameObject.transform.position;
 
 	}
+
+	void OnTriggerEnter (Collider other)
+	{
+		Transform rootT = other.gameObject.transform.root;
+		GameObject go = rootT.gameObject;
+
+		if (go == lastTriggerGo) {
+			return;
+		}
+		lastTriggerGo = go;
+
+		if (go.tag == "Enemy") {
+			
+			//Destroy and restart game
+			if (shieldLevel == 0) {
+				Destroy (gameObject);
+				Main.S.DelayedRestart (gameRestartDelay);
+
+			} else {
+				shieldLevel--;
+				Destroy (go);
+			}
+		}
+	}
+
+
 }
