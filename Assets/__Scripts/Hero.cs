@@ -84,7 +84,7 @@ public class Hero : MonoBehaviour {
 		}
 
 		if(Input.GetKey(KeyCode.Space)){
-				gameObject.transform.Rotate(0,45,0);
+				gameObject.transform.Rotate(-30,0,0);
 			}
 
 		gameObject.transform.position = move * speed + gameObject.transform.position;

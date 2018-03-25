@@ -125,6 +125,11 @@ public class Weapon : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		
+		bool toggle = true;
+		if (Input.GetKeyDown (KeyCode.Q)) {
+			type = WeaponType.blaster;
+		} else if (Input.GetKeyDown (KeyCode.E)) {
+			type = WeaponType.spread;
+		}
 	}
 }

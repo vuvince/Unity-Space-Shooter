@@ -1069,6 +1069,16 @@ Prefab:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114440365228229714, guid: 316c08c750a96473ab3d7d9dbccf6fa0,
+        type: 2}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114772464718717292, guid: 316c08c750a96473ab3d7d9dbccf6fa0,
+        type: 2}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 316c08c750a96473ab3d7d9dbccf6fa0, type: 2}
   m_IsPrefabParent: 0
@@ -1116,6 +1126,16 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dbbcc700dcc914c50a54e0f402c9f4d2, type: 2}
+    - target: {fileID: 114662349548644498, guid: c72a90955c7ff413097f1f4f9fc024b9,
+        type: 2}
+      propertyPath: health
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114683331304440812, guid: c72a90955c7ff413097f1f4f9fc024b9,
+        type: 2}
+      propertyPath: health
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c72a90955c7ff413097f1f4f9fc024b9, type: 2}
   m_IsPrefabParent: 0
