@@ -23,16 +23,6 @@ public class Enemy : MonoBehaviour {
 				Destroy (gameObject);
 			}
 		}
-			
-	}
-
-	void OnTriggerEnter(Collider go){
-		GameObject otherGO = go.gameObject;
-		if (otherGO.tag == "ProjectileHero") {
-			Destroy (otherGO);
-			Destroy (gameObject);
-
-		}
 	}
 
 	protected virtual void Move() {

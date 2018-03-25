@@ -6,26 +6,20 @@ using UnityEngine.SceneManagement;
 public class Main : MonoBehaviour {
 
 	static public Main S;
-	static Dictionary<WeaponType, WeaponDefinition> WEAP_DICT;
 
 	public GameObject[] enemies;
 	public float spawnPerSecond = 0.5f;
 	public float defaultPadding;
-	public WeaponDefinition[] weaponDefinitions;
+
 
 
 	public GameObject easter;
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
 		S = this;
 
 		Invoke ("SpawnEnemy", 1f / spawnPerSecond);
-
-		WEAP_DICT = new Dictionary<WeaponType, WeaponDefinition> ();
-		foreach (WeaponDefinition def in weaponDefinitions) {
-			WEAP_DICT[def.type] = def;
-		}
 
 		// set the desired aspect ratio (the values in this example are
 		// hard-coded for 16:9, but you could make them into public
@@ -111,15 +105,5 @@ public class Main : MonoBehaviour {
 		SceneManager.LoadScene("Main");
 	}
 
-	static public WeaponDefinition GetWeaponDefinition ( WeaponType wt) {
-		if (WEAP_DICT.ContainsKey(wt) ){
-			return (WEAP_DICT[wt]);
-		}
-
-			return (new WeaponDefinition());
-	}
-
-
 
 }
-

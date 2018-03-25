@@ -7,11 +7,6 @@ public class Hero : MonoBehaviour {
 	static public Hero S; //Singleton
 
 	public float speed;
-
-	public float projectileSpeed = 1f;
-
-	public float fireRate = 0.2f;
-
 	private BoundsCheck bound;
 
 	public float shieldLevel = 1; //Set Dynamically
@@ -20,20 +15,12 @@ public class Hero : MonoBehaviour {
 
 	public float gameRestartDelay = 2f;
 
-	public GameObject projectilePrefab;
-
-	public delegate void WeaponFireDelegate ();
-
-	public WeaponFireDelegate fireDelegate;
-
 	void Awake () {
 		if (S == null) {
 			S = this;
 		} else {
 			Debug.LogError ("HeroAwake() - Attempted to Assign second Hero");
 		}
-
-	//	fireDelegate += TempFire;
 	}
 	// Use this for initialization
 	void Start () {
@@ -55,18 +42,7 @@ public class Hero : MonoBehaviour {
 		*/
 		Vector3 pos = gameObject.transform.position;
 
-		//Firing bullet
-		/*
-		if (Input.GetKeyDown(KeyCode.Space) ){
-			//Invoke ("TempFire", fireRate);
-			TempFire();
-		}
-		*/
-
-		if (Input.GetKeyDown(KeyCode.Space) && fireDelegate != null) {
-			fireDelegate ();
-		}
-
+		 
 
 		if (Input.GetKey (KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
 			move += Vector3.right;
@@ -91,22 +67,6 @@ public class Hero : MonoBehaviour {
 
 	}
 
-	/*		//Shoot shit
-	void TempFire(){
-		GameObject bulletGO = Instantiate<GameObject> (projectilePrefab);
-		bulletGO.transform.position = transform.position;
-		Rigidbody rB = bulletGO.GetComponent<Rigidbody>();
-	//	rB.velocity = Vector3.up * projectileSpeed;
-
-		Projectile proj = bulletGO.GetComponent<Projectile> ();
-		proj.type = WeaponType.blaster;
-		float tSpeed = Main.GetWeaponDefinition (proj.type).velocity;
-		rB.velocity = Vector3.up * tSpeed;
-
-	}
-	*/
-
-
 	void OnTriggerEnter (Collider other)
 	{
 		Transform rootT = other.gameObject.transform.root;
@@ -130,7 +90,6 @@ public class Hero : MonoBehaviour {
 			}
 		}
 	}
-
 
 
 }
