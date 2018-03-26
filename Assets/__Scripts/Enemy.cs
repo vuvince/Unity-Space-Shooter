@@ -18,7 +18,6 @@ public class Enemy : MonoBehaviour {
 	public bool notifiedOfDestruction = false;
 
 
-
 	// Use this for initialization
 	void Awake () {
 		bndCheck = GetComponent<BoundsCheck> ();
@@ -28,6 +27,7 @@ public class Enemy : MonoBehaviour {
 		for (int i = 0; i < materials.Length; i++) {
 			originalColors [i] = materials [i].color;
 		}
+			
 	}
 
 	// Update is called once per frame
@@ -61,6 +61,7 @@ public class Enemy : MonoBehaviour {
 				
 			if (health <= 0) {
 				Destroy (this.gameObject);
+				ScoreManager.AddPoints (this.score);
 			}
 
 		}

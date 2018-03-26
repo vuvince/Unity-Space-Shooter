@@ -35,10 +35,7 @@ public class Hero : MonoBehaviour {
 
 	//	fireDelegate += TempFire;
 	}
-	// Use this for initialization
-	void Start () {
-		
-	}
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -89,6 +86,11 @@ public class Hero : MonoBehaviour {
 
 		gameObject.transform.position = move * speed + gameObject.transform.position;
 
+		//RESET THE HIGHSCORE
+		if (Input.GetKeyDown (KeyCode.P)) {
+			ScoreManager.ResetHighScore ();
+		}
+
 	}
 
 	/*		//Shoot shit
@@ -122,6 +124,7 @@ public class Hero : MonoBehaviour {
 			//Destroy and restart game
 			if (shieldLevel == 0) {
 				Destroy (gameObject);
+				ScoreManager.Reset ();
 				Main.S.DelayedRestart (gameRestartDelay);
 
 			} else {

@@ -68,6 +68,7 @@ public class Main : MonoBehaviour {
 		}
 	}
 
+	//ADD SOME CODE HERE TO MAKE COMPLETELY RANDOM SPAWNS
 
 	//Spawn enemy prefabs	
 	public void SpawnEnemy(){
