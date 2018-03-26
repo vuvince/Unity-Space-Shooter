@@ -3,6 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//TO DO
+//REFINE ENEMIES: DAMAGES, GIVE THEM SHIELDS, MAYBE A HEALTHBAR?
+//REFINE SCORE: SOMETHING TO DO WITH THE CHILDREN??
+
+//WEAPONS
+public enum WeaponType {
+	none,
+	blaster,
+	spread,
+	shield 		//raise shield level
+}
+
 public class Main : MonoBehaviour {
 
 	static public Main S;

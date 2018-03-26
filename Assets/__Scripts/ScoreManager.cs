@@ -12,10 +12,12 @@ public class ScoreManager : MonoBehaviour {
 	public static int score;
 
 	public static int highscore;
+	private static int pointsGained;
 
 	void Start()
 	{
 		score = 0;
+		pointsGained = 0;
 		highscore = PlayerPrefs.GetInt ("highscore", highscore);
 
 		high.text = "HighScore: \n" + highscore.ToString();
@@ -24,7 +26,7 @@ public class ScoreManager : MonoBehaviour {
 
 	void Update()
 	{
-		current.text = "Score: \n" + score.ToString();
+		current.text = "Score: \n" + score.ToString() + "\n+"+ pointsGained;
 
 		if (score > highscore)
 		{
@@ -38,6 +40,7 @@ public class ScoreManager : MonoBehaviour {
 	public static void AddPoints (int pointsToAdd)
 	{
 		score += pointsToAdd;
+		pointsGained = 2*pointsToAdd;
 	}
 
 	public static void Reset()

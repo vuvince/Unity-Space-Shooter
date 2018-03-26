@@ -2,13 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//WEAPONS
-public enum WeaponType {
-	none,
-	blaster,
-	spread,
-	shield 		//raise shield level
-}
+
+
 
 [System.Serializable]
 public class WeaponDefinition {

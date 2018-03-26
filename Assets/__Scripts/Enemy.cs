@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour {
 	public float damageDoneTime;
 	public bool notifiedOfDestruction = false;
 
+	private GameObject lastTriggerGo;
+
 
 	// Use this for initialization
 	void Awake () {
@@ -52,6 +54,10 @@ public class Enemy : MonoBehaviour {
 		GameObject otherGO = go.gameObject;
 		Projectile p = otherGO.GetComponent<Projectile> ();
 
+		if (otherGO == lastTriggerGo) {
+			return;
+		}
+		lastTriggerGo = otherGO;
 
 		if (otherGO.tag == "ProjectileHero") {
 			ShowDamage ();

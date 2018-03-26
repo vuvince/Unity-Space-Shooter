@@ -970,7 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6238107d543794778a9775764b3f626f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.15
+  speed: 0.2
   projectileSpeed: 15
   fireRate: 0.2
   shieldLevel: 2
@@ -1287,7 +1287,7 @@ MonoBehaviour:
     projectileColor: {r: 0.23529413, g: 0.8431373, b: 1, a: 1}
     damageOnHit: 1
     continuousDamage: 0
-    delayBetweenShots: 0.5
+    delayBetweenShots: 0.3
     velocity: 50
   - type: 3
     letter: O
