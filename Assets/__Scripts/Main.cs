@@ -12,6 +12,7 @@ public enum WeaponType {
 	none,
 	blaster,
 	spread,
+	bomb,
 	shield 		//raise shield level
 }
 
@@ -27,6 +28,11 @@ public class Main : MonoBehaviour {
 
 
 	public GameObject easter;
+
+	public GameObject prefabPowerUp;
+	public WeaponType[] powerUpFrequency = new WeaponType[] {
+		WeaponType.blaster, WeaponType.spread, WeaponType.shield};
+
 
 	// Use this for initialization
 	void Awake () {
@@ -130,6 +136,23 @@ public class Main : MonoBehaviour {
 		}
 
 			return (new WeaponDefinition());
+	}
+
+	public void ShipDestroyed (Enemy e) {
+		if (Random.value <= e.powerUpDropChance) {
+			//Choose which power up to pick
+			int ndx = Random.RandomRange(0,powerUpFrequency.Length);
+			WeaponType puType = powerUpFrequency [ndx];
+
+			//Spawn a powerup
+			GameObject go = Instantiate(prefabPowerUp) as GameObject;
+			PowerUp pu = go.GetComponent<PowerUp> ();
+
+			pu.SetType (puType);
+
+			//Set it to the position of the destroyed ship
+			pu.transform.position = e.transform.position;
+		}
 	}
 
 

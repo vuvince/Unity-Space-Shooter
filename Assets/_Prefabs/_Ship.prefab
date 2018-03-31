@@ -604,12 +604,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.15
+  bombAmmo: 1
   projectileSpeed: 15
   fireRate: 0.2
-  shieldLevel: 2
   gameRestartDelay: 2
+  powerUpTime: 5
+  shieldLevel: 2
   projectilePrefab: {fileID: 1192101340279756, guid: 832ee1ccca8324189bc1e2379893dd4a,
     type: 2}
+  bombPrefab: {fileID: 0}
+  lastTime: 0
 --- !u!114 &114499838157841944
 MonoBehaviour:
   m_ObjectHideFlags: 1

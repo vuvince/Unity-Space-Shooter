@@ -380,9 +380,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedDown: 0.15
+  fireRate: 0.3
   health: 2
   score: 50
   showDamageDuration: 0.1
+  powerUpDropChance: 1
   originalColors: []
   materials: []
   showingDamage: 0
@@ -400,9 +402,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedDown: 0
+  fireRate: 0.3
   health: 2
   score: 50
   showDamageDuration: 0.1
+  powerUpDropChance: 0
   originalColors: []
   materials: []
   showingDamage: 0

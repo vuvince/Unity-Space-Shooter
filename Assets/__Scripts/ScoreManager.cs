@@ -8,11 +8,15 @@ public class ScoreManager : MonoBehaviour {
 
 	public Text current;
 	public Text high;
+	public Text bombCount;
+
 
 	public static int score;
+	public static int bombs;
 
 	public static int highscore;
 	private static int pointsGained;
+
 
 	void Start()
 	{
@@ -22,11 +26,14 @@ public class ScoreManager : MonoBehaviour {
 
 		high.text = "HighScore: \n" + highscore.ToString();
 		current.text = "Score: \n"+ score.ToString ();
+		bombCount.text = "Bombs: " + bombs.ToString ();
 	}
+
 
 	void Update()
 	{
 		current.text = "Score: \n" + score.ToString() + "\n+"+ pointsGained;
+		bombCount.text = "Bombs: " + bombs.ToString ();
 
 		if (score > highscore)
 		{
@@ -35,6 +42,8 @@ public class ScoreManager : MonoBehaviour {
 		}
 
 		PlayerPrefs.SetInt ("highscore", highscore);
+
+
 	}
 
 	public static void AddPoints (int pointsToAdd)
@@ -51,5 +60,13 @@ public class ScoreManager : MonoBehaviour {
 	public static void ResetHighScore (){
 		highscore = 0;
 	}
+
+	public static void UpdateBombs(int num)
+	{
+		bombs = num;
+	}
+
+
+		
 }
 

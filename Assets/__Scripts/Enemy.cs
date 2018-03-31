@@ -5,10 +5,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
 	private BoundsCheck bndCheck;
+
+	[Header("Set In Inspector")]
 	public float speedDown = 0.15f;
+	public float fireRate = 0.3f; //Unused
 	public float health = 2;
 	public int score = 100;
 	public float showDamageDuration = 0.1f;
+	public float powerUpDropChance = 1f;
 
 	[Header("Set Dynamically: Enemy")]
 	public Color[] originalColors;
@@ -53,6 +57,7 @@ public class Enemy : MonoBehaviour {
 	void OnTriggerEnter(Collider go){
 		GameObject otherGO = go.gameObject;
 		Projectile p = otherGO.GetComponent<Projectile> ();
+		bool notifiedOfDestruction = false;
 
 		if (otherGO == lastTriggerGo) {
 			return;
@@ -62,15 +67,44 @@ public class Enemy : MonoBehaviour {
 		if (otherGO.tag == "ProjectileHero") {
 			ShowDamage ();
 			Destroy (otherGO);
+
+			if (bndCheck.offUp) {
+				return;
+			}
 	
 			health -= Main.GetWeaponDefinition (p.type).damageOnHit;
 				
 			if (health <= 0) {
+				if (!notifiedOfDestruction) {
+
+					notifiedOfDestruction = true;
+					Main.S.ShipDestroyed (this);
+				}
+
+
 				Destroy (this.gameObject);
 				ScoreManager.AddPoints (this.score);
 			}
 
 		}
+		if (otherGO.tag == "Bomb") {
+			
+			if (bndCheck.offUp) {
+				return;
+			}
+			
+			if (!notifiedOfDestruction) {
+				notifiedOfDestruction = true;
+				Main.S.ShipDestroyed (this);
+
+			}
+			notifiedOfDestruction = true;
+
+			Destroy (this.gameObject);
+			ScoreManager.AddPoints (this.score);
+
+		}
+		
 	}
 
 	void ShowDamage() {

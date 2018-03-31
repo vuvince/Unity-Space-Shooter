@@ -6,32 +6,52 @@ public class Hero : MonoBehaviour {
 
 	static public Hero S; //Singleton
 
+	[Header("Set In Inspector")]
 	public float speed;
-
+	public int bombAmmo = 1;
 	public float projectileSpeed = 1f;
-
 	public float fireRate = 0.2f;
-
-	private BoundsCheck bound;
-
-	public float shieldLevel = 1; //Set Dynamically
-
-	private GameObject lastTriggerGo = null;
-
 	public float gameRestartDelay = 2f;
+	public float powerUpTime = 10f;
 
+
+	[Header("Set Dynamically")]
+	public float shieldLevel = 1; //Set Dynamically
 	public GameObject projectilePrefab;
-
+	public GameObject bombPrefab;
+	private BoundsCheck bound;
 	public delegate void WeaponFireDelegate ();
+	private bool invicibility = false;
+	public float lastTime;
+	public GameObject shield;
+
 
 	public WeaponFireDelegate fireDelegate;
 
+
+	private Renderer shieldRend;
+	private GameObject lastTriggerGo = null;
+	private Color shieldColor;
+
+
+
+
+
+
 	void Awake () {
+		ScoreManager.UpdateBombs (bombAmmo);
 		if (S == null) {
 			S = this;
 		} else {
 			Debug.LogError ("HeroAwake() - Attempted to Assign second Hero");
 		}
+
+		//GET THE SHIELD COMPONENT
+		shield = transform.Find ("Shield").gameObject;
+
+		shieldRend = shield.GetComponent<Renderer> ();
+		shieldColor = shieldRend.material.color;
+
 
 	//	fireDelegate += TempFire;
 	}
@@ -39,6 +59,16 @@ public class Hero : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//DEALING WITH THE INVICIBILITY POWERUP
+
+		if (invicibility) {
+			if (Time.time - lastTime > powerUpTime) {
+				invicibility = false;
+				shieldRend.material.color = shieldColor;
+			} 
+		}
+
+
 		gameObject.transform.rotation = Quaternion.identity;
 		Vector3 move = Vector3.zero;
 
@@ -60,8 +90,16 @@ public class Hero : MonoBehaviour {
 		}
 		*/
 
+		//Shoot Weapon
 		if (Input.GetKeyDown(KeyCode.Space) && fireDelegate != null) {
 			fireDelegate ();
+		}
+
+		//Drop bomb
+		if (Input.GetKeyDown (KeyCode.F) && bombAmmo >= 1) {
+			bombAmmo--;
+			ScoreManager.UpdateBombs (bombAmmo);
+			DropBomb ();
 		}
 
 
@@ -120,18 +158,63 @@ public class Hero : MonoBehaviour {
 		lastTriggerGo = go;
 
 		if (go.tag == "Enemy") {
-			
-			//Destroy and restart game
-			if (shieldLevel == 0) {
-				Destroy (gameObject);
-				ScoreManager.Reset ();
-				Main.S.DelayedRestart (gameRestartDelay);
-
-			} else {
-				shieldLevel--;
+			if (invicibility) {
 				Destroy (go);
+			} else {
+				
+				//Destroy and restart game
+				if (shieldLevel == 0) {
+					Destroy (gameObject);
+					ScoreManager.Reset ();
+					Main.S.DelayedRestart (gameRestartDelay);
+
+				} else {
+					shieldLevel--;
+					Destroy (go);
+				}
+			} 
+		}
+		else if (go.tag == "PowerUp") {
+			AbsorbPowerUp (go);
 			}
 		}
+
+	
+
+	public void DropBomb(){
+		GameObject bomb = Instantiate<GameObject> (bombPrefab);
+		var spawn = S.transform.position;
+		bomb.transform.position = new Vector3 (spawn.x, spawn.y, 2f);
+
+	}
+
+	public void AbsorbPowerUp (GameObject go){
+		PowerUp pu = go.GetComponent<PowerUp> ();
+		switch (pu.type) {
+			//What will happen?
+		case WeaponType.bomb:
+			{
+				if (bombAmmo >= 3) {
+					ScoreManager.UpdateBombs (bombAmmo);
+					break;
+				}
+				bombAmmo++;
+				ScoreManager.UpdateBombs (bombAmmo);
+				break;
+			}
+			//MAKE THE PLAYER INVINCIBLE FOR A COUPLE SECONDS
+		case WeaponType.shield:
+			{
+				shieldRend.material.color = Color.cyan;
+				shieldLevel = 4;
+				invicibility = true;
+				lastTime = Time.time;
+
+				break;
+			}
+		
+		}
+		pu.AbsorbedBy (this.gameObject);
 	}
 
 

@@ -74,6 +74,7 @@ public class Weapon : MonoBehaviour {
 		if (Time.time - lastShotTime < def.delayBetweenShots) {
 			return;
 		}
+
 		Projectile p;
 		Vector3 vel = Vector3.up * def.velocity;
 		if (transform.up.y < 0) {
@@ -96,7 +97,6 @@ public class Weapon : MonoBehaviour {
 			p.transform.rotation = Quaternion.AngleAxis(-10,Vector3.back);
 			p.rigid.velocity = p.transform.rotation * vel;
 			break;
-
 		}
 	}
 
