@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-	private BoundsCheck bndCheck;
+	protected BoundsCheck bndCheck;
 
 	[Header("Set In Inspector")]
 	public float speedDown = 0.15f;
@@ -22,6 +22,15 @@ public class Enemy : MonoBehaviour {
 	public bool notifiedOfDestruction = false;
 
 	private GameObject lastTriggerGo;
+
+	public Vector3 pos {
+		get {
+			return(this.transform.position);
+		}
+		set{
+			this.transform.position = value;
+		}
+	}
 
 
 	// Use this for initialization
@@ -123,7 +132,8 @@ public class Enemy : MonoBehaviour {
 	}
 
 	protected virtual void Move() {
-		Vector3 down = Vector3.down;
-		this.transform.position = speedDown * down + gameObject.transform.position;
+		Vector3 tempPos = pos;
+		tempPos.y -= speedDown * Time.deltaTime;
+		pos = tempPos;
 	}
 }

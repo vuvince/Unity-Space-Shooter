@@ -59,8 +59,8 @@ public class Hero : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 		//DEALING WITH THE INVICIBILITY POWERUP
-
 		if (invicibility) {
 			if (Time.time - lastTime > powerUpTime) {
 				invicibility = false;

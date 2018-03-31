@@ -33,6 +33,9 @@ public class Main : MonoBehaviour {
 	public WeaponType[] powerUpFrequency = new WeaponType[] {
 		WeaponType.blaster, WeaponType.spread, WeaponType.shield};
 
+	[Header("Set Dynamically")]
+	public int currScore = 0;
+
 
 	// Use this for initialization
 	void Awake () {
@@ -91,7 +94,7 @@ public class Main : MonoBehaviour {
 	//Spawn enemy prefabs	
 	public void SpawnEnemy(){
 		//Getting a random #
-		int rand = Random.Range(0, enemies.Length);
+		int rand = Random.Range(0, enemies.Length-1); //DO NOT SPAWN THE LAST ENEMY
 		GameObject spawn = Instantiate<GameObject> (enemies [rand]);
 
 		//Position enemy ABOVE screen with random x position
@@ -111,9 +114,42 @@ public class Main : MonoBehaviour {
 		Invoke ("SpawnEnemy", 1f / spawnPerSecond);
 	}
 
+
+	//SPAWN NEW TYPE OF ENEMY AT LEVEL2
+	public void SpawnEnemyTwo(){
+		//Getting a random #
+		int rand = Random.Range(0, enemies.Length);
+		GameObject spawn = Instantiate<GameObject> (enemies [rand]);
+
+		//Position enemy ABOVE screen with random x position
+		float enemyPadding = defaultPadding;
+		if (spawn.GetComponent<BoundsCheck>() !=null) {
+			enemyPadding = Mathf.Abs (spawn.GetComponent<BoundsCheck> ().radius);
+		}
+
+		//Set initial Position
+		Vector3 pos = Vector3.zero;
+		float xMin = -5.5f + enemyPadding;
+		float xMax = 5.5f - enemyPadding;
+		pos.x = Random.Range (xMin, xMax);
+		pos.y = 9;
+		spawn.transform.position = pos;
+
+		Invoke ("SpawnEnemyTwo", 1f / (spawnPerSecond*2));
+	}
+
 	
 	// Update is called once per frame
 	void Update () {
+
+		//CHECK THE LEVELLING UP
+		if (ScoreManager.score >= 2000 && currScore == 0) {
+			ScoreManager.LevelUp ();
+			currScore = 1;
+			CancelInvoke ();
+			Invoke ("SpawnEnemyTwo", 1f / (spawnPerSecond * 2));
+		}
+
 		Vector3 pos = new Vector3 (0, 0, 0);
 		if (Input.GetKey(KeyCode.Alpha6) && Input.GetKeyDown (KeyCode.Alpha9)) {
 			Instantiate (easter, pos, Quaternion.identity);
