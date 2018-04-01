@@ -437,7 +437,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4298d95f80db04daeaaad397e22889dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedDown: 0.15
+  speedDown: 40
+  fireRate: 0.3
+  health: 2
+  score: 100
+  showDamageDuration: 0.1
+  powerUpDropChance: 1
+  originalColors: []
+  materials: []
+  showingDamage: 0
+  damageDoneTime: 0
+  notifiedOfDestruction: 0
 --- !u!135 &135275068081340228
 SphereCollider:
   m_ObjectHideFlags: 1

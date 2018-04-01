@@ -13,7 +13,10 @@ public enum WeaponType {
 	blaster,
 	spread,
 	bomb,
-	shield 		//raise shield level
+	shield,
+	aimbot,
+	speed
+
 }
 
 public class Main : MonoBehaviour {
@@ -152,6 +155,7 @@ public class Main : MonoBehaviour {
 
 		Vector3 pos = new Vector3 (0, 0, 0);
 		if (Input.GetKey(KeyCode.Alpha6) && Input.GetKeyDown (KeyCode.Alpha9)) {
+			pos.y = 9;
 			Instantiate (easter, pos, Quaternion.identity);
 		}
 	}

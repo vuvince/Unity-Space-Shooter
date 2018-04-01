@@ -361,16 +361,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedDown: 14
-  fireRate: 0.3
-  health: 4
-  score: 100
+  fireRate: 0.5
+  health: 2
+  score: 75
   showDamageDuration: 0.1
-  powerUpDropChance: 1
+  powerUpDropChance: 0.1
+  projectilePrefab: {fileID: 1192101340279756, guid: 832ee1ccca8324189bc1e2379893dd4a,
+    type: 2}
+  gunChance: 0.2
   originalColors: []
   materials: []
   showingDamage: 0
   damageDoneTime: 0
   notifiedOfDestruction: 0
+  num: 0
 --- !u!114 &114873117804512480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -383,16 +387,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedDown: 0.1
-  fireRate: 0.3
+  fireRate: 0.5
   health: 4
   score: 100
   showDamageDuration: 0.1
   powerUpDropChance: 1
+  projectilePrefab: {fileID: 1192101340279756, guid: 832ee1ccca8324189bc1e2379893dd4a,
+    type: 2}
+  gunChance: 0.3
   originalColors: []
   materials: []
   showingDamage: 0
   damageDoneTime: 0
   notifiedOfDestruction: 0
+  num: 0
   speed: 0.1
   directionChangePerScd: 0.01
 --- !u!114 &114996438309154034

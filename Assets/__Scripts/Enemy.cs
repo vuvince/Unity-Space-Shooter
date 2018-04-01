@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour {
 	public int score = 100;
 	public float showDamageDuration = 0.1f;
 	public float powerUpDropChance = 1f;
+	public GameObject projectilePrefab;
+	public float gunChance = 0.3f;
 
 	[Header("Set Dynamically: Enemy")]
 	public Color[] originalColors;
@@ -20,6 +22,7 @@ public class Enemy : MonoBehaviour {
 	public bool showingDamage = false;
 	public float damageDoneTime;
 	public bool notifiedOfDestruction = false;
+	public float num;
 
 	private GameObject lastTriggerGo;
 
@@ -42,6 +45,11 @@ public class Enemy : MonoBehaviour {
 		for (int i = 0; i < materials.Length; i++) {
 			originalColors [i] = materials [i].color;
 		}
+		num = Random.value;
+		if (num < gunChance) {
+			InvokeRepeating ("TempFire", fireRate, fireRate);
+			score *= 2;
+		}
 			
 	}
 
@@ -61,6 +69,23 @@ public class Enemy : MonoBehaviour {
 			}
 		}
 			
+	}
+
+	void TempFire(){
+		GameObject bulletGO = Instantiate(projectilePrefab);
+		bulletGO.tag = "Enemy";
+		bulletGO.GetComponent<Renderer> ().material.color = Color.red;
+		bulletGO.layer = 9;
+
+		bulletGO.transform.position = transform.position;
+		Rigidbody rB = bulletGO.GetComponent<Rigidbody>();
+		//	rB.velocity = Vector3.up * projectileSpeed;
+
+		Projectile proj = bulletGO.GetComponent<Projectile> ();
+		proj.type = WeaponType.blaster;
+		float tSpeed = Main.GetWeaponDefinition (proj.type).velocity;
+		rB.velocity = Vector3.down * tSpeed;
+
 	}
 
 	void OnTriggerEnter(Collider go){
@@ -97,11 +122,11 @@ public class Enemy : MonoBehaviour {
 
 		}
 		if (otherGO.tag == "Bomb") {
-			
+
 			if (bndCheck.offUp) {
 				return;
 			}
-			
+
 			if (!notifiedOfDestruction) {
 				notifiedOfDestruction = true;
 				Main.S.ShipDestroyed (this);
@@ -113,6 +138,7 @@ public class Enemy : MonoBehaviour {
 			ScoreManager.AddPoints (this.score);
 
 		}
+
 		
 	}
 

@@ -10,9 +10,11 @@ public class ScoreManager : MonoBehaviour {
 	public Text high;
 	public Text bombCount;
 	public Text level;
+	public Text gameOver;
 
 	public static int score;
 	public static int bombs;
+	public static bool over = false;
 
 	public static int highscore;
 	private static int pointsGained;
@@ -30,6 +32,7 @@ public class ScoreManager : MonoBehaviour {
 		current.text = "Score: \n"+ score.ToString ();
 		bombCount.text = "Bombs: " + bombs.ToString ();
 		level.text = "Level \n" + currLevel.ToString ();
+		gameOver.text = "";
 	}
 
 
@@ -46,6 +49,11 @@ public class ScoreManager : MonoBehaviour {
 		}
 
 		PlayerPrefs.SetInt ("highscore", highscore);
+
+		if (over) {
+			gameOver.text = "GameOver!\n\nScore: " + score.ToString ();
+			over = false;
+		}
 	}
 
 
@@ -53,7 +61,7 @@ public class ScoreManager : MonoBehaviour {
 	public static void AddPoints (int pointsToAdd)
 	{
 		score += pointsToAdd;
-		pointsGained = 2*pointsToAdd;
+		pointsGained = pointsToAdd;
 	}
 
 	public static void Reset()
@@ -78,6 +86,11 @@ public class ScoreManager : MonoBehaviour {
 	{
 		currLevel++;
 	}
+
+	public static void GameOver() {
+		over = true;
+	}
+
 
 		
 }

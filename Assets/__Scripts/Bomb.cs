@@ -24,4 +24,15 @@ public class Bomb : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
+
+	void OnTriggerEnter(Collider go){
+		GameObject otherGO = go.gameObject;
+		Projectile p = otherGO.GetComponent<Projectile> ();
+		bool notifiedOfDestruction = false;
+
+		if (otherGO.tag == "Enemy") {
+			Destroy (otherGO.gameObject);
+		}
+
+	}
 }
