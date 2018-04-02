@@ -181,7 +181,7 @@ public class Main : MonoBehaviour {
 	public void ShipDestroyed (Enemy e) {
 		if (Random.value <= e.powerUpDropChance) {
 			//Choose which power up to pick
-			int ndx = Random.RandomRange(0,powerUpFrequency.Length);
+			int ndx = Random.Range(0,powerUpFrequency.Length);
 			WeaponType puType = powerUpFrequency [ndx];
 
 			//Spawn a powerup
