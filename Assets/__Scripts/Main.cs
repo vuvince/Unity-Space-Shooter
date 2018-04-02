@@ -123,6 +123,7 @@ public class Main : MonoBehaviour {
 		//Getting a random #
 		int rand = Random.Range(0, enemies.Length);
 		GameObject spawn = Instantiate<GameObject> (enemies [rand]);
+		spawn.GetComponent<Enemy>().speedDown = Random.Range(6,10); //CHANGE THE SPEED ENEMIES NOW HAVE RANDOM SPEEDS
 
 		//Position enemy ABOVE screen with random x position
 		float enemyPadding = defaultPadding;

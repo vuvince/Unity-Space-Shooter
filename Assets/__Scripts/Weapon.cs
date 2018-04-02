@@ -127,9 +127,12 @@ public class Weapon : MonoBehaviour {
 	void Update () {
 		//bool toggle = true;
 		if (Input.GetKeyDown (KeyCode.Q)) {
-			type = WeaponType.blaster;
-		} else if (Input.GetKeyDown (KeyCode.E)) {
-			type = WeaponType.spread;
+			if (type == WeaponType.blaster) {
+				type = WeaponType.spread;
+			} else {
+				type = WeaponType.blaster;
+			}
 		}
 	}
+		
 }

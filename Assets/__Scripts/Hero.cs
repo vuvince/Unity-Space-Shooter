@@ -92,7 +92,7 @@ public class Hero : MonoBehaviour {
 		}
 
 		//Drop bomb
-		if (Input.GetKeyDown (KeyCode.F) && bombAmmo >= 1) {
+		if (Input.GetKeyDown (KeyCode.E) && bombAmmo >= 1) {
 			bombAmmo--;
 			ScoreManager.UpdateBombs (bombAmmo);
 			DropBomb ();

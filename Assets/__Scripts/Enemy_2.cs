@@ -8,7 +8,7 @@ public class Enemy_2 : Enemy {
 	//   the same way in the Inspector pane. :/
 
 	// # seconds for a full sine wave
-	public float    waveFrequency = 2;
+	public float    waveFrequency = 1.5f;
 	// sine wave width in meters
 	public float    waveWidth = 4;
 	public float    waveRotY = 45;

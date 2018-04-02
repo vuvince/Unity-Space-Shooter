@@ -288,11 +288,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedDown: 0.15
   fireRate: 0.3
-  health: 2
+  health: 4
   score: 100
   showDamageDuration: 0.1
   powerUpDropChance: 1
-  projectilePrefab: {fileID: 1192101340279756, guid: 832ee1ccca8324189bc1e2379893dd4a,
+  projectilePrefab: {fileID: 1477699911755196, guid: 8d68d1b29b357416399ddec4b24d313f,
     type: 2}
   gunChance: 0.3
   originalColors: []
@@ -301,7 +301,7 @@ MonoBehaviour:
   damageDoneTime: 0
   notifiedOfDestruction: 0
   num: 0
-  waveFrequency: 2
+  waveFrequency: 1.5
   waveWidth: 4
   waveRotY: 45
 --- !u!114 &114513510640072556
@@ -317,13 +317,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedDown: 10
   fireRate: 0.4
-  health: 6
+  health: 4
   score: 150
   showDamageDuration: 0.1
   powerUpDropChance: 0.2
-  projectilePrefab: {fileID: 1192101340279756, guid: 832ee1ccca8324189bc1e2379893dd4a,
+  projectilePrefab: {fileID: 1477699911755196, guid: 8d68d1b29b357416399ddec4b24d313f,
     type: 2}
-  gunChance: 0.1
+  gunChance: 0.3
   originalColors: []
   materials: []
   showingDamage: 0

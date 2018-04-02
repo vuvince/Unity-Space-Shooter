@@ -360,13 +360,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4298d95f80db04daeaaad397e22889dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedDown: 14
+  speedDown: 8
   fireRate: 0.5
-  health: 2
+  health: 3
   score: 75
   showDamageDuration: 0.1
   powerUpDropChance: 0.1
-  projectilePrefab: {fileID: 1192101340279756, guid: 832ee1ccca8324189bc1e2379893dd4a,
+  projectilePrefab: {fileID: 1477699911755196, guid: 8d68d1b29b357416399ddec4b24d313f,
     type: 2}
   gunChance: 0.2
   originalColors: []
@@ -388,20 +388,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedDown: 0.1
   fireRate: 0.5
-  health: 4
+  health: 3
   score: 100
   showDamageDuration: 0.1
   powerUpDropChance: 1
-  projectilePrefab: {fileID: 1192101340279756, guid: 832ee1ccca8324189bc1e2379893dd4a,
+  projectilePrefab: {fileID: 1477699911755196, guid: 8d68d1b29b357416399ddec4b24d313f,
     type: 2}
-  gunChance: 0.3
+  gunChance: 0.2
   originalColors: []
   materials: []
   showingDamage: 0
   damageDoneTime: 0
   notifiedOfDestruction: 0
   num: 0
-  speed: 0.1
+  speed: 0.02
   directionChangePerScd: 0.01
 --- !u!114 &114996438309154034
 MonoBehaviour:

@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (bndCheck.offUp) {
+		if (bndCheck.offUp || bndCheck.offDown) {
 			Destroy (gameObject);
 		}
 	}

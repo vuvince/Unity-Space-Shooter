@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy_1 : Enemy {
 
+	[Header("Set In Inspector")]
 	public float speed;
 	public float directionChangePerScd = 0.5f;
 
