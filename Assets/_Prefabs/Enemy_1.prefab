@@ -75,7 +75,6 @@ GameObject:
   - component: {fileID: 114996438309154034}
   - component: {fileID: 54564881257381462}
   - component: {fileID: 114873117804512480}
-  - component: {fileID: 114679601357924752}
   - component: {fileID: 135697305410423194}
   m_Layer: 9
   m_Name: Enemy_1
@@ -349,32 +348,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &114679601357924752
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1839497207547386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4298d95f80db04daeaaad397e22889dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedDown: 8
-  fireRate: 0.5
-  health: 3
-  score: 75
-  showDamageDuration: 0.1
-  powerUpDropChance: 0.1
-  projectilePrefab: {fileID: 1477699911755196, guid: 8d68d1b29b357416399ddec4b24d313f,
-    type: 2}
-  gunChance: 0.2
-  originalColors: []
-  materials: []
-  showingDamage: 0
-  damageDoneTime: 0
-  notifiedOfDestruction: 0
-  num: 0
 --- !u!114 &114873117804512480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -386,12 +359,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8299a9f3052f54aef9e1d43e202802a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedDown: 0.1
+  speedDown: 8
   fireRate: 0.5
   health: 3
-  score: 100
+  score: 75
   showDamageDuration: 0.1
-  powerUpDropChance: 1
+  powerUpDropChance: 0.1
   projectilePrefab: {fileID: 1477699911755196, guid: 8d68d1b29b357416399ddec4b24d313f,
     type: 2}
   gunChance: 0.2

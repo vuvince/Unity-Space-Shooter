@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour {
 	void OnTriggerEnter(Collider go){
 		GameObject otherGO = go.gameObject;
 		Projectile p = otherGO.GetComponent<Projectile> ();
-		bool notifiedOfDestruction = false;
+
 
 		if (otherGO == lastTriggerGo) {
 			return;
@@ -111,13 +111,13 @@ public class Enemy : MonoBehaviour {
 			if (health <= 0) {
 				if (!notifiedOfDestruction) {
 
-					notifiedOfDestruction = true;
+
 					Main.S.ShipDestroyed (this);
+					ScoreManager.AddPoints (this.score);
 				}
 
-
+				notifiedOfDestruction = true;
 				Destroy (this.gameObject);
-				ScoreManager.AddPoints (this.score);
 			}
 
 		}
@@ -128,14 +128,13 @@ public class Enemy : MonoBehaviour {
 			}
 
 			if (!notifiedOfDestruction) {
-				notifiedOfDestruction = true;
+				
 				Main.S.ShipDestroyed (this);
+				ScoreManager.AddPoints (this.score); //CHECK
 
 			}
 			notifiedOfDestruction = true;
-
 			Destroy (this.gameObject);
-			ScoreManager.AddPoints (this.score);
 
 		}
 

@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 135749067027658758}
   - component: {fileID: 114589059350350900}
   - component: {fileID: 114410967636296330}
-  - component: {fileID: 114513510640072556}
   m_Layer: 9
   m_Name: Enemy_2
   m_TagString: Enemy
@@ -286,35 +285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5307a80abe3400694da07a756b22d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedDown: 0.15
-  fireRate: 0.3
-  health: 4
-  score: 100
-  showDamageDuration: 0.1
-  powerUpDropChance: 1
-  projectilePrefab: {fileID: 1477699911755196, guid: 8d68d1b29b357416399ddec4b24d313f,
-    type: 2}
-  gunChance: 0.3
-  originalColors: []
-  materials: []
-  showingDamage: 0
-  damageDoneTime: 0
-  notifiedOfDestruction: 0
-  num: 0
-  waveFrequency: 1.5
-  waveWidth: 4
-  waveRotY: 45
---- !u!114 &114513510640072556
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1044455467017226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4298d95f80db04daeaaad397e22889dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   speedDown: 10
   fireRate: 0.4
   health: 4
@@ -330,6 +300,9 @@ MonoBehaviour:
   damageDoneTime: 0
   notifiedOfDestruction: 0
   num: 0
+  waveFrequency: 1.5
+  waveWidth: 4
+  waveRotY: 45
 --- !u!114 &114589059350350900
 MonoBehaviour:
   m_ObjectHideFlags: 1

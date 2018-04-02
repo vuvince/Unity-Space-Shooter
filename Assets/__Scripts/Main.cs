@@ -38,6 +38,7 @@ public class Main : MonoBehaviour {
 
 	[Header("Set Dynamically")]
 	public int currScore = 0;
+	private Enemy lastEnemy;
 
 
 	// Use this for initialization
@@ -179,7 +180,15 @@ public class Main : MonoBehaviour {
 			return (new WeaponDefinition());
 	}
 
+
+	//SPAWNS THE POWERUP
 	public void ShipDestroyed (Enemy e) {
+		
+		if (e == lastEnemy) {
+			return;
+		}
+		lastEnemy = e;
+
 		if (Random.value <= e.powerUpDropChance) {
 			//Choose which power up to pick
 			int ndx = Random.Range(0,powerUpFrequency.Length);
