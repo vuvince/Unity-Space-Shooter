@@ -64,6 +64,10 @@ public class ScoreManager : MonoBehaviour {
 		pointsGained = pointsToAdd;
 	}
 
+	public static int PointsGained()
+	{
+		return pointsGained;
+	}
 	public static void Reset()
 	{
 		score = 0;

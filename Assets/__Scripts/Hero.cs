@@ -153,7 +153,7 @@ public class Hero : MonoBehaviour {
 		}
 		lastTriggerGo = go;
 
-		if (go.tag == "Enemy") {
+		if (go.tag == "Enemy" || go.tag == "ProjectileEnemy") {
 			if (invicibility) {
 				Destroy (go);
 			} else {

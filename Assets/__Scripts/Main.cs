@@ -36,9 +36,12 @@ public class Main : MonoBehaviour {
 	public WeaponType[] powerUpFrequency = new WeaponType[] {
 		WeaponType.blaster, WeaponType.spread, WeaponType.shield};
 
-	[Header("Set Dynamically")]
+	[Header("Levelling Up")]
+	public int level = 1;
 	public int currScore = 0;
+	public int pointsPerLevel = 1000;
 	private Enemy lastEnemy;
+	private int topSpeed = 10;
 
 
 	// Use this for initialization
@@ -119,13 +122,15 @@ public class Main : MonoBehaviour {
 	}
 
 
-	//SPAWN NEW TYPE OF ENEMY AT LEVEL2
+	//SPAWN NEW TYPE OF ENEMY AT LEVEL2 AND UP
 	public void SpawnEnemyTwo(){
 		//Getting a random #
 		int rand = Random.Range(0, enemies.Length);
 		GameObject spawn = Instantiate<GameObject> (enemies [rand]);
-		spawn.GetComponent<Enemy>().speedDown = Random.Range(6,10); //CHANGE THE SPEED ENEMIES NOW HAVE RANDOM SPEEDS
-
+		spawn.GetComponent<Enemy>().speedDown = Random.Range(topSpeed - 4,topSpeed); //CHANGE THE SPEED ENEMIES NOW HAVE RANDOM SPEEDS
+		if (spawn.GetComponent<Enemy> ().speedDown >= 10) {
+			spawn.GetComponent<Enemy> ().score *= 2;
+		}
 		//Position enemy ABOVE screen with random x position
 		float enemyPadding = defaultPadding;
 		if (spawn.GetComponent<BoundsCheck>() !=null) {
@@ -140,19 +145,27 @@ public class Main : MonoBehaviour {
 		pos.y = 9;
 		spawn.transform.position = pos;
 
-		Invoke ("SpawnEnemyTwo", 1f / (spawnPerSecond*2));
+		Invoke ("SpawnEnemyTwo", 1f / (spawnPerSecond));
 	}
 
 	
 	// Update is called once per frame
 	void Update () {
 
-		//CHECK THE LEVELLING UP
-		if (ScoreManager.score >= 2000 && currScore == 0) {
-			ScoreManager.LevelUp ();
-			currScore = 1;
-			CancelInvoke ();
-			Invoke ("SpawnEnemyTwo", 1f / (spawnPerSecond * 2));
+
+		if (currScore >= pointsPerLevel) {
+			LvlUp ();
+			if (level == 2) {
+				CancelInvoke ();
+				spawnPerSecond *= 2;
+				Invoke ("SpawnEnemyTwo", 1f / (spawnPerSecond));
+			}
+			//LEVEL 3 AND UP SPAWNS FASTER AND ENEMIES GET QUICKER
+			if (level > 3) {
+				spawnPerSecond *= 1.1f;
+				topSpeed += 1;
+			}
+
 		}
 
 		Vector3 pos = new Vector3 (0, 0, 0);
@@ -160,6 +173,12 @@ public class Main : MonoBehaviour {
 			pos.y = 9;
 			Instantiate (easter, pos, Quaternion.identity);
 		}
+	}
+
+	public void LvlUp() {
+		level++;
+		currScore -= pointsPerLevel;
+		ScoreManager.LevelUp ();
 	}
 
 	public void DelayedRestart (float delay)
@@ -188,6 +207,8 @@ public class Main : MonoBehaviour {
 			return;
 		}
 		lastEnemy = e;
+
+		currScore += e.score;
 
 		if (Random.value <= e.powerUpDropChance) {
 			//Choose which power up to pick

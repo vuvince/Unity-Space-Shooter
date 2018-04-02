@@ -73,9 +73,9 @@ public class Enemy : MonoBehaviour {
 
 	void TempFire(){
 		GameObject bulletGO = Instantiate(projectilePrefab);
-		bulletGO.tag = "Enemy";
+		bulletGO.tag = "ProjectileEnemy";
 		bulletGO.GetComponent<Renderer> ().material.color = Color.red;
-		bulletGO.layer = 9;
+		bulletGO.layer = 11;
 
 		bulletGO.transform.position = transform.position;
 		Rigidbody rB = bulletGO.GetComponent<Rigidbody>();
